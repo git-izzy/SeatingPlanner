@@ -42,17 +42,11 @@ export default function Table({bound, circle}:tableProps){
         const width = toNumber(dimensions.width);
         const height = toNumber(dimensions.height);
 
-        let chairRotate = -theta 
-        if( theta > Math.PI/2 &&  theta  < 3*Math.PI/2){
-        // if( theta > Math.PI/2 &&  theta  < 3*Math.PI/2){
-            chairRotate = theta;
-        }
-
         const xDis = (Math.cos(theta) * 1.3 * width/2) + width/2; 
         const yDis = (Math.sin(theta) * 1.3 * -height/2) + height/2;
 
         
-        return <Chair visible={true} rotation={chairRotate} xDisplace={xDis} yDisplace={yDis} label={index}/>;
+        return <Chair visible={true} rotation={-theta} xDisplace={xDis} yDisplace={yDis} label={index}/>;
     }
 
     return(
