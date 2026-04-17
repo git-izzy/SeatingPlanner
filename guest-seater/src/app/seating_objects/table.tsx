@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Rnd } from "react-rnd";
-import { RectReadOnly } from "react-use-measure";
+import useMeasure, { RectReadOnly } from "react-use-measure";
 import Chair from "./Chair";
 
 interface tableProps{
@@ -26,8 +26,8 @@ export default function Table({bound, circle}:tableProps){
     const chairNum =5;
 
     const [dimensions, setDimensions] = useState<Dimensions>({ width: baseWidth, height: baseHeight});
-    const [position, setPosition] = useState<Position>()
-
+    const [position, setPosition] = useState<Position>();
+    
     function styles():string {
         let className ="bg-blue-300 border-2 border-black h-full relative"
         if(circle){
@@ -35,22 +35,24 @@ export default function Table({bound, circle}:tableProps){
         }
         return className
     }
-
+    
     function chairDist(index:number)  {
-        const theta = (2* Math.PI/chairNum)*(index-1);
-        // console.log(`Dimension Width ${dimensions.width}`);
+        //Convert the chair's index in array --> angle (in radian)
+        const theta = (2* Math.PI/chairNum)*(index);
         const width = toNumber(dimensions.width);
         const height = toNumber(dimensions.height);
 
-        let rotate = -theta
+        let chairRotate = -theta 
         if( theta > Math.PI/2 &&  theta  < 3*Math.PI/2){
         // if( theta > Math.PI/2 &&  theta  < 3*Math.PI/2){
-            rotate = theta;
+            chairRotate = theta;
         }
 
-        const xDis = (Math.cos(theta) * width/2) + width/2; 
-        const yDis = (Math.sin(theta) * -height/2) + width/2;
-        return <Chair visible={true} rotation={rotate} xDisplace={xDis} yDisplace={yDis} label={index}/>;
+        const xDis = (Math.cos(theta) * 1.3 * width/2) + width/2; 
+        const yDis = (Math.sin(theta) * 1.3 * -height/2) + height/2;
+
+        
+        return <Chair visible={true} rotation={chairRotate} xDisplace={xDis} yDisplace={yDis} label={index}/>;
     }
 
     return(
@@ -70,7 +72,7 @@ export default function Table({bound, circle}:tableProps){
                 {chairDist(2)}
                 {chairDist(3)}
                 {chairDist(4)}
-                {chairDist(5)}
+                {chairDist(0)}
             </div>
         </Rnd>
     )
