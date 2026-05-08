@@ -2,11 +2,7 @@ import { useState } from "react";
 import { Rnd } from "react-rnd";
 import useMeasure, { RectReadOnly } from "react-use-measure";
 import Chair from "./Chair";
-
-interface tableProps{
-    bound:RectReadOnly;
-    circle?:boolean;
-}
+import {TableProps} from '../helper_files/tableObj'
 
 type Dimensions={
     height:number | string;
@@ -19,7 +15,7 @@ type Position={
 }
 
 
-export default function Table({bound, circle}:tableProps){
+export default function Table(props:TableProps){
 
     const baseHeight = 50;
     const baseWidth = 50;
@@ -30,9 +26,7 @@ export default function Table({bound, circle}:tableProps){
     
     function styles():string {
         let className ="bg-blue-300 border-2 border-black h-full relative"
-        if(circle){
-            className += " rounded-full"
-        }
+        className += " rounded-full"
         return className
     }
     
@@ -51,7 +45,7 @@ export default function Table({bound, circle}:tableProps){
 
     return(
         //set bounds + on drag & resize 
-        <Rnd bounds="parent" lockAspectRatio={circle} size={dimensions}
+        <Rnd bounds="parent" lockAspectRatio={true} size={dimensions}
             onDragStop={(event,data)=>{ setPosition({x:data.x, y:data.y}) }}
             onResizeStop={(e, direction, ref)=>{setDimensions({height: ref.style.height, width: ref.style.width})}}
             cancel="Chair">

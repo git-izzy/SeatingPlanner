@@ -1,6 +1,6 @@
 import { RectReadOnly } from "react-use-measure";
-import Table from "../seating_objects/table";
-import Chair from "../seating_objects/Chair";
+import Table from "../seating_components/table";
+import Chair from "../seating_components/Chair";
 
 interface panelProps{
     bounds:RectReadOnly
