@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 
-const NoSSR = dynamic(() => import("./seatingChartPanel"), {
+const NoSSR = dynamic(() => import("./seatingPanel"), {
   ssr: false,
 });
 
