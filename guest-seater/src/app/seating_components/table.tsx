@@ -30,6 +30,8 @@ export default function Table(props:TableProps){
         return className
     }
     
+    console.log(`Rerendered table ${props.width}`)
+
     function chairDist(index:number)  {
         //Convert the chair's index in array --> angle (in radian)
         const theta = (2* Math.PI/chairNum)*(index);

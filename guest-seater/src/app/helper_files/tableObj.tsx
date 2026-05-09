@@ -1,3 +1,4 @@
+import { JSX } from "react";
 import { Guest } from "./coreObjects";
 
 export interface TableProps{
@@ -5,7 +6,7 @@ export interface TableProps{
     chairCount?:number;
 }
 
-export class TableObj{
+export abstract class TableObj{
     static idCount = 0;
 
     id:number
@@ -40,8 +41,14 @@ export class TableObj{
         this.chairArray[index] = !this.chairArray[index];
     }
 
+    abstract toJsx():JSX.Element;
+
 }
 
 export class CircleTable extends TableObj{
     static defaultRatio = .17;
+    
+    toJsx(): JSX.Element {
+        throw new Error("Method not implemented.");
+    }
 }
