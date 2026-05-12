@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import Table from "../seating_components/table";
+import CircleTable from "../seating_components/circleTable";
 
 export default function FloorChart(){
     return(

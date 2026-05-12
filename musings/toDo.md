@@ -6,6 +6,7 @@
     [] Individual Table menu
     [] Seat #
     [] Dimensions
+[] Bounds detection 
 
 ## Details (Non-CSS)
 
