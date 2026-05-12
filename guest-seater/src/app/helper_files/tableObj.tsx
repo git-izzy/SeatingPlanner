@@ -16,7 +16,7 @@ export abstract class TableObj{
     chairArray: boolean[] =[]
     guests : Guest[] =[]
 
-    constructor(width:number= 50, chairCount:number = 0 ){
+    constructor(width:number= 100, chairCount:number = 7 ){
         this.id=TableObj.idCount;
         TableObj.idCount++;
 

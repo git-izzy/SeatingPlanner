@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Rnd } from "react-rnd";
+import { ResizableDelta, Rnd, RndResizeCallback } from "react-rnd";
 import useMeasure, { RectReadOnly } from "react-use-measure";
 import Chair from "./Chair";
 import { tableProps } from "../helper_files/tableObj";
@@ -19,11 +19,10 @@ type Position={
 export default function CircleTable(props:tableProps){
     const tableDto = props.DataObject;
 
-    const baseHeight = 50;
-    const baseWidth = 50;
-    const chairNum =5;
+    const baseWidth = tableDto.width;
+    const chairNum =tableDto.chairCount;
 
-    const [dimensions, setDimensions] = useState<Dimensions>({ width: baseWidth, height: baseHeight});
+    const [dimensions, setDimensions] = useState<Dimensions>({ width: baseWidth, height: baseWidth});
     const [position, setPosition] = useState<Position>();
     
     function styles():string {
@@ -36,7 +35,7 @@ export default function CircleTable(props:tableProps){
         //set bounds + on drag & resize 
         <Rnd bounds="parent" lockAspectRatio={true} size={dimensions}
         onDragStop={(event,data)=>{ setPosition({x:data.x, y:data.y}) }}
-        onResizeStop={(e, direction, ref)=>{setDimensions({height: ref.style.height, width: ref.style.width})}}
+        onResizeStop={onResizeStop}
         cancel="Chair">
             <div className={styles()}>
                 {/* 
@@ -61,7 +60,13 @@ export default function CircleTable(props:tableProps){
         const yDis = (Math.sin(theta) * 1.3 * -height/2) + height/2;
 
         
-        return <Chair visible={true} rotation={-theta} xDisplace={xDis} yDisplace={yDis} label={index}/>;
+        return <Chair visible={visible} rotation={-theta} xDisplace={xDis} yDisplace={yDis} label={index} key={index}/>;
+    }
+
+    function onResizeStop(e:unknown, mouse:unknown, ref: HTMLElement, delta:ResizableDelta, position:Position){
+        const dim = ref.style;
+        setDimensions({width: dim.width, height : dim.width});
+        tableDto.setWidth(toNumber(dim.width));
     }
 }
 
