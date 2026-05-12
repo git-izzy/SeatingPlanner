@@ -15,14 +15,15 @@ export default function SeatingPanel(){
     return(
         <div className="h-full">
             <SeatingControlPanel addTable={addTable}/>
-            <div className="h-full relative">
+            <div className="h-full relative border-2">
                 {tables.map((t, i)=>{ return <CircleTable DataObject ={t} key={t.id}/>})}
             </div>
         </div>
     );
 
     function addTable(){
-        const tableObj = new CircleTableDto();
+        //Algorithm to find first available open space (way down the line me thinks)
+        const tableObj = new CircleTableDto({x:0,y:0});
         setTables([...tables, tableObj])
     }
 }
