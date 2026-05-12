@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
-import Table from "../seating_components/table";
-import {CircleTable, TableObj}  from "../helper_files/tableObj";
+import CircleTable from "../seating_components/circleTable";
+import {CircleTableDto, TableObj}  from "../helper_files/tableObj";
 import useMeasure from "react-use-measure";
 import { useState } from "react";
 import SeatingControlPanel from "./seatingControlPanel";
@@ -16,13 +16,13 @@ export default function SeatingPanel(){
         <div className="h-full">
             <SeatingControlPanel addTable={addTable}/>
             <div className="h-full relative">
-                {tables.map((t, i)=>{ return <Table width ={i} key={t.id}/>})}
+                {tables.map((t, i)=>{ return <CircleTable DataObject ={t} key={t.id}/>})}
             </div>
         </div>
     );
 
     function addTable(){
-        const tableObj = new CircleTable(40);
+        const tableObj = new CircleTableDto();
         setTables([...tables, tableObj])
     }
 }

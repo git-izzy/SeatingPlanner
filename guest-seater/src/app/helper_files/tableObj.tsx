@@ -1,9 +1,9 @@
 import { JSX } from "react";
 import { Guest } from "./coreObjects";
+import CircleTable from "../seating_components/circleTable";
 
-export interface TableProps{
-    width:number;
-    chairCount?:number;
+export interface tableProps{
+    DataObject:TableObj
 }
 
 export abstract class TableObj{
@@ -16,7 +16,7 @@ export abstract class TableObj{
     chairArray: boolean[] =[]
     guests : Guest[] =[]
 
-    constructor(width:number, chairCount:number = 0 ){
+    constructor(width:number= 50, chairCount:number = 0 ){
         this.id=TableObj.idCount;
         TableObj.idCount++;
 
@@ -45,7 +45,7 @@ export abstract class TableObj{
 
 }
 
-export class CircleTable extends TableObj{
+export class CircleTableDto extends TableObj{
     static defaultRatio = .17;
     
     toJsx(): JSX.Element {
