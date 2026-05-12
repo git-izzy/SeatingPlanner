@@ -13,9 +13,9 @@ export default function SeatingPanel(){
     const [tables, setTables] = useState<TableObj[]>([]);
     
     return(
-        <div className="h-full">
+        <div className="h-full flex flex-col">
             <SeatingControlPanel addTable={addTable}/>
-            <div className="h-full relative border-2">
+            <div className="relative border-2 grow">
                 {tables.map((t, i)=>{ return <CircleTable DataObject ={t} key={t.id}/>})}
             </div>
         </div>
