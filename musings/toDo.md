@@ -1,6 +1,18 @@
+# TO DO:
+
+**Next on the docket:** 
+- Refactoring 
+  - Remove unused imports
+  - General code review and cleanup
+- Implement MUI
+  - Main Control Panel
+  - Table Control Panel
+  - Floor chart
+- Add accessibility
+
 ## Big Stuff
 
-[] Hookup tableObj to table.tsx (~5-8)
+[x] Hookup tableObj to table.tsx (~5-8)
 [] Add Other types of tables (~8)
 [] Add Table Customization 
     [] Individual Table menu
