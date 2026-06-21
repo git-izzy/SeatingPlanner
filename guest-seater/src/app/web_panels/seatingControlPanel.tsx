@@ -1,4 +1,4 @@
-import { JSX } from "react";
+import { Button } from "@mui/material";
 
 interface seatingControlProps{
     addTable: ()=>void;
@@ -7,9 +7,10 @@ interface seatingControlProps{
 export default function SeatingControlPanel(props:seatingControlProps){
     return(
         <div className="bg-gray-500 p-1 border-gray-600 border-1">
-            <button className="btn-ctrl" onClick={props.addTable}>
+            <Button onClick={props.addTable}>
                 + Circle
-            </button>
+            </Button>
+            <Button color='error'>Test</Button>
         </div>
     );
 }
